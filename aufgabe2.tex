@@ -18,10 +18,10 @@ Sprache ig­nori­eren (eine Auswahl find­en Sie unter
 \url{http://www.nltk.org/nltk_data/packages/corpora/stopwords.zip}
 %​www.​nltk.​org/​nltk\_­da­ta/pack­ages/cor­po­ra/stopwords.​zip }
 ).
-    Wie würden Sie nun die Eig­nung der 30 häufig­sten Wörter ein­schätzen?}
+    Wie würden Sie nun die Eig­nung der 30 häufig­sten Wörter ein­schätzen?\\}
     
 \loesung{Als zu vergleichende Texte wurden \textit{Frankenstein} von Mary Shelley und \textit{Die Verwandlung} von Franz Kafka in der englischen Übersetzung gewählt.\\
-Beim Betrachten der Liste (Abb. \ref{nostopwords}) fällt auf, dass die 30 häufigsten Wörter beider Texte zum größten Teil Pronomen (wie \textit{I}, \textit{he} oder \textit{you}) oder Konjunktionen (\textit{and}, \textit{for}) und Artikel (\textit{the}) sind. Da sich diese Wörter in quasi jedem englischen Text finden, sind sie nahezu bedeutungslos im Sinne der Text-Klassifizierung. Nur durch Kenntnis dieser Wörter ist es praktisch unmöglich, Rückschlüsse auf den Inhalt des Textes zu ziehen.
+Beim Betrachten der Liste (Abb. \ref{nostopwords}) fällt auf, dass die 30 häufigsten Wörter beider Texte zum größten Teil Pronomen (wie \textit{I}, \textit{he} oder \textit{you}) oder Konjunktionen (\textit{and}, \textit{for}) und Artikel (\textit{the}) sind. Da sich diese Wörter in quasi jedem englischen Text finden, sind sie nahezu bedeutungslos im Sinne der Text-Klassifizierung. Nur durch Kenntnis dieser Wörter ist es praktisch unmöglich, Rückschlüsse auf den Inhalt des Textes zu ziehen.\\
 \begin{figure}[h]
 \begin{center}
 \includegraphics{img/false.png}
@@ -29,9 +29,7 @@ Beim Betrachten der Liste (Abb. \ref{nostopwords}) fällt auf, dass die 30 häuf
 \label{nostopwords}
 \end{center}
 \end{figure}
-
-Die Einbeziehung einer Liste mit Stopwords soll genau solche Fälle verhindern. In einer solchen Liste sind Wörter enthalten, die keinerlei Aussagekraft über den Inhalt des Textes liefern und deshalb bei der Analyse außen vor gelassen werden sollen. Unter Nichtbeachtung dieser Wörter stellen sich die 30 häufigsten Wörter beider Texte wie in Abb. \ref{stopwords} dar.
-
+Die Einbeziehung einer Liste mit Stopwords soll genau solche Fälle verhindern. In einer solchen Liste sind Wörter enthalten, die keinerlei Aussagekraft über den Inhalt des Textes liefern und deshalb bei der Analyse außen vor gelassen werden sollen. Unter Nichtbeachtung dieser Wörter stellen sich die 30 häufigsten Wörter beider Texte wie in Abb. \ref{stopwords} dar.\\
 \begin{figure}[h]
 \begin{center}
 \includegraphics{img/true.png}
@@ -39,7 +37,6 @@ Die Einbeziehung einer Liste mit Stopwords soll genau solche Fälle verhindern. 
 \label{stopwords}
 \end{center}
 \end{figure}
-
 Nun befinden sich unter den 30 Wörtern auch solche, die zumindest grob Rückschlüsse auf den Inhalt der Texte zulassen, wie z. B. \textit{saw}, \textit{time}, \textit{father} (Frankenstein) oder \textit{gregor}, \textit{room}, \textit{sister} (Die Verwandlung).
 
 
