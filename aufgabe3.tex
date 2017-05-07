@@ -2,15 +2,141 @@
 fol­gen einer 
 so­ge­nan­nten Zipf-Verteilung, d. h. einer Verteilung, die dop­pelt 
 log­a­rith­misch ist. Überprüfen Sie das an­hand der gewählten Texte. (2 
-Punk­te)
-
-    Plot­ten Sie die Häufigkeit­en (y-Achse) über den Rang (x-Achse), also die 
+Punk­te) \\
+Plot­ten Sie die Häufigkeit­en (y-Achse) über den Rang (x-Achse), also die 
 An­zahl der Vorkomm­nisse des häufig­sten Wortes zuerst, dann die An­zahl des 
 zwei­thäufig­sten Wortes, etc. Betra­cht­en Sie sowohl eine ab­so­lute als auch 
-eine log­a­rith­mis­che Skalierung bei­der Achsen. Was können Sie beobacht­en?
-    Bes­tim­men Sie die An­zahl der Worte, die mit einer gegebe­nen Häufigkeit 
+eine log­a­rith­mis­che Skalierung bei­der Achsen. Was können Sie beobacht­en?\\
+Bes­tim­men Sie die An­zahl der Worte, die mit einer gegebe­nen Häufigkeit 
 vorkom­men (also, wie viele Wörter gibt es, die mit Häufigkeit 1 vorkom­men, 
-wie 
-viele mit Häufigkeit 2, etc. ). Pro­duzieren Sie ähn­liche Grafiken (An­zahl 
-der Worte mit einer gewis­sen Häufigkeit über die Häufigkeit) und 
+wie viele mit Häufigkeit 2, etc. ). Pro­duzieren Sie ähn­liche Grafiken 
+(An­zahl der Worte mit einer gewis­sen Häufigkeit über die Häufigkeit) und 
 in­ter­pretieren Sie diese.}
+\newcommand{\plotOf}[3]{
+\begin{figure}[ht]
+\begin{center}\resizebox {\columnwidth} {!} {
+\begin{tikzpicture}
+\begin{axis}
+\addplot table [x=i, y=count,col sep=semicolon]
+%,col sep=semicolon
+{#1};
+\end{axis}
+\end{tikzpicture}}
+\caption{#2}
+\label{#3}
+\end{center}
+\end{figure}
+}
+\newcommand{\logPlotOf}[3]{
+\begin{figure}[ht]
+\begin{center}\resizebox {\columnwidth} {!} {
+\begin{tikzpicture}
+\begin{semilogyaxis}
+%[restrict expr to domain={y}{10:1e4},unbounded coords=discard]
+\addplot table [x=i, y=count,col sep=semicolon] {#1}; %
+\end{semilogyaxis}
+\end{tikzpicture}}
+\caption{#2}
+\label{#3}
+\end{center}
+\end{figure}
+}
+\loesung{}
+Die Zipf-Verteilung beschreibt, dass die Auftrittswahrscheinlichkeit eines 
+Elementes umgekehrt proportional von seiner Position $n$ in einer absteigend 
+nach Häufigkeit geordneten Liste von $N$ Elementen
+abhängt:\footnote{\url{https://de.wikipedia.org/wiki/Zipfsches_Gesetz}} 
+$$p(n) = \frac{1}{H_N} \cdot \frac{1}{n}$$
+mit
+$$H_N = \sum \frac{1}{n}$$
+Inwiefern diese Verteilung Gültigkeit für die Worthäufigkeiten besitzt, wurde 
+anhand der Texte aus Aufgabe 2 geprüft. Die Ergebnisse Um die 50 häufigsten 
+Wörter samt ihrer 
+Häufigkeiten zu ermitteln, wurde unter Verwendung des nltk-Toolkits ein 
+Python-Skript\footnote{Zu finden in \tt{aufg03/main.py}} geschrieben, das die 
+Daten ermittelt und in eine CSV-Datei schreibt.
+Die 
+\plotOf{aufg03/frankenstein.txt.csv}{Die Häufigkeit (y-Achse) der 50 
+häufigsten Wörter in Frankenstein}{fig:frankensteinHaeufigkeiten} 
+\logPlotOf{aufg03/frankenstein.txt.csv}{Die Häufigkeit (y-Achse) der 50 
+häufigsten 
+Wörter in Frankenstein (logarithmiert)}{fig:frankensteinHaeufigkeitenLog}
+\plotOf{aufg03/samsa.txt.csv}{Die Häufigkeit (y-Achse) der 50 häufigsten 
+Wörter in Die Verwandlung}{fig:samsaHaeufigkeiten}
+\logPlotOf{aufg03/samsa.txt.csv}{Die Häufigkeit (y-Achse) der 50 häufigsten 
+Wörter in Die Verwandlung (logarithmiert)}{fig:samsaHaeufigkeitenLog}
+\hfill \\
+%\csvautotabular
+%{aufg03/frankenstein.txt.csv}
+\newpage
+
+\begin{figure}[ht]
+\begin{center}
+\csvreader[
+	tabular=|l|l|l|l|l|l|l|,
+	head to column names,
+	table head=\hline n & Wort & $A\equiv\text{Anzahl}$ & $1/n$ & 
+$p(n)\equiv1/(n H_N)$ & $E\equiv p(n) N$ & $1-E/A$ \\ \hline,
+	late after line=\\\hline,
+	separator=semicolon]{aufg03/frankenstein.txt.csv}{
+			i=\i,
+			word=\word,
+			anzahl=\anzahl,
+			rangRatio=\rangRatio,
+			p=\p,
+			pSumCount=\pSumCount,
+			Abw=\Abw
+		}
+		{
+			\i &
+			\word &
+			\anzahl &
+			\rangRatio &
+			\p &
+			\pSumCount &
+			\Abw
+		}
+\caption{Untersuchung der Gültigkeit des Zipfschen Gesetzes für den Text 
+"`Frankenstein"'}
+\label{tab:zipfFrankenstein}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+\csvreader[
+	tabular=|l|l|l|l|l|l|l|,
+	head to column names,
+	table head=\hline n & Wort & $A\equiv\text{Anzahl}$ & $1/n$ & 
+$p(n)\equiv1/(n H_N)$ & $E\equiv p(n) N$ & $1-E/A$ \\ \hline,
+	late after line=\\\hline,
+	separator=semicolon]{aufg03/samsa.txt.csv}{
+			i=\i,
+			word=\word,
+			anzahl=\anzahl,
+			rangRatio=\rangRatio,
+			p=\p,
+			pSumCount=\pSumCount,
+			Abw=\Abw
+		}
+		{
+			\i &
+			\word &
+			\anzahl &
+			\rangRatio &
+			\p &
+			\pSumCount &
+			\Abw
+		}
+\caption{Untersuchung der Gültigkeit des Zipfschen Gesetzes für den Text 
+"`Die Verwandlung"'}
+\label{tab:zipfVerwandlung}
+\end{center}
+\end{figure}
+
+
+	%\rangRatio & 
+	%\p & } 
+	%\pSumCount & 
+	%\theAbw}%
+
