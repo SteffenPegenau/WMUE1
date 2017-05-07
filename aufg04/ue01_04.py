@@ -146,7 +146,7 @@ def makeTable(url1, url2, charpairs):
 #--------------------------------------
 #MAIN BODY
 
-makeTable("frankenstein.txt", "samsa.txt", True)
+makeTable("frankenstein.txt", "samsa.txt", False)
 
 
 
