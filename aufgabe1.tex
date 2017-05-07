@@ -1,5 +1,22 @@
-\aufgabenstellung{Überlegen Sie sich eine neuartige, originelle Web mIning 
+\aufgabenstellung{Überlegen Sie sich eine neuartige, originelle Web Mining 
 Anwendung, die mit Text-Klassifikationsverfahren gelöst werden könnte. 
 Skizzieren Sie eine mögliche Umsetzung (z.B. Sammlung der Trainingsdaten, 
 Klassifikation der Trainingsdaten, Einsatz des gelernten Klassifikators in der 
-Praxis, etc.) (2 Punkte)}
+Praxis, etc.) (2 Punkte)} \\
+\textbf{Lösung:} \\
+Für die Qualität einer wissenschaftlichen Literaturrecherche ist unter anderem 
+die Herkunft und Art der referenzierten Werke entscheidend. Um die 
+Selektion zu unterstützen, sollen die Ergebnisse einer Suche auf Google Scholar 
+klassifiziert werden. \\
+Die Umsetzung soll folgendermaßen Ablaufen:
+\begin{enumerate}
+	\item An einem Fachgebiet wird ein Ranking von Quellen festgelegt. 
+Beispiel: Journal A ist besser als Journal B, aber schlechter als Konferenz C.
+	\item Quellen, die am Fachgebiet vorhanden sind dienen als 
+Trainingsdaten
+	\item Die Quellen werden dem Ranking entsprechend klassifiziert. 
+	\item Für einen Browser wird ein Plugin entwickelt, das sich bei 
+zukünftigen Google Scholar Recherchen einklinkt. Dabei werden die ersten $n$ 
+Ergebnisse klassifziert und dem Nutzer nach absteigender Qualität neu sortiert 
+angezeigt.
+\end{enumerate}
