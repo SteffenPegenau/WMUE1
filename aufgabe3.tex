@@ -14,10 +14,10 @@ wie viele mit Häufigkeit 2, etc. ). Pro­duzieren Sie ähn­liche Grafiken
 in­ter­pretieren Sie diese.}
 \newcommand{\plotOf}[3]{
 \begin{figure}[ht]
-\begin{center}\resizebox {\columnwidth} {!} {
+\begin{center}\resizebox {0.7\columnwidth} {!} {
 \begin{tikzpicture}
 \begin{axis}
-\addplot table [x=i, y=count,col sep=semicolon]
+\addplot table [x=i, y=anzahl,col sep=semicolon]
 %,col sep=semicolon
 {#1};
 \end{axis}
@@ -29,11 +29,11 @@ in­ter­pretieren Sie diese.}
 }
 \newcommand{\logPlotOf}[3]{
 \begin{figure}[ht]
-\begin{center}\resizebox {\columnwidth} {!} {
+\begin{center}\resizebox {0.7\columnwidth} {!} {
 \begin{tikzpicture}
 \begin{semilogyaxis}
 %[restrict expr to domain={y}{10:1e4},unbounded coords=discard]
-\addplot table [x=i, y=count,col sep=semicolon] {#1}; %
+\addplot table [x=i, y=anzahl,col sep=semicolon] {#1}; %
 \end{semilogyaxis}
 \end{tikzpicture}}
 \caption{#2}
@@ -50,12 +50,31 @@ $$p(n) = \frac{1}{H_N} \cdot \frac{1}{n}$$
 mit
 $$H_N = \sum \frac{1}{n}$$
 Inwiefern diese Verteilung Gültigkeit für die Worthäufigkeiten besitzt, wurde 
-anhand der Texte aus Aufgabe 2 geprüft. Die Ergebnisse Um die 50 häufigsten 
-Wörter samt ihrer 
-Häufigkeiten zu ermitteln, wurde unter Verwendung des nltk-Toolkits ein 
-Python-Skript\footnote{Zu finden in \tt{aufg03/main.py}} geschrieben, das die 
-Daten ermittelt und in eine CSV-Datei schreibt.
-Die 
+anhand der beiden Texte aus Aufgabe 2 geprüft. Die mit einem 
+Python-Skript\footnote{Zu finden in \tt{aufg03/main.py}} gesammelten Daten sind 
+in den Tabellen~\ref{tab:zipfFrankenstein} und \ref{tab:zipfVerwandlung}  für 
+$n=40$ dargestellt. Ob die Worthäufigkeiten Zipf-verteilt sind, lässt sich 
+anhand der letzten Spalte der Tabellen abschätzen, die die prozentuale 
+Abweichung des Erwartungswertes vom tatsächlichen Wert angibt. Beispiel: Das 
+Wort "`the"' kommt im Frankenstein 4195 Mal vor, während die geschätze 
+Häufigkeit 7935,879 beträgt. Damit kommt das Wort 89,17\% weniger häufig vor, 
+als von der Verteilung prognostiziert. \\
+Für eine solide Aussage über die Verteilung wären Methoden der Statistik nötig. 
+Es fällt aber auf, dass unter den 20 häufigsten Wörtern im Frankenstein bei 19 
+der Erwartungswert mehr als 10\% vom tatsächlichen Wert abweicht; in der 
+Verwandlung sind es 18. \\
+Zur grafischen Analyse wurden in den 
+Abbildungen~\ref{fig:frankensteinHaeufigkeiten} und 
+\ref{fig:samsaHaeufigkeiten} die Worthäufigkeit (y-Achse) in Abhängigkeit der 
+Position in der absteigend sortierten Liste (x-Achse) abgetragen. Da es sich 
+bei der Zipfverteilung um eine doppeltlogarithmische Verteilung  handelt, 
+wurden die selben Zahlen in den 
+Abbildungen~\ref{fig:frankensteinHaeufigkeitenLog} und 
+\ref{fig:samsaHaeufigkeitenLog} mit logarithmierten Skalen dargestellt. Für die 
+Zipf-Verteilung spricht, dass beide Datensätze die Charakteristik einer $1/n$ 
+aufweisen und sich in den logarithmierten Grafiken einer fallenden Geraden 
+annähern.
+
 \plotOf{aufg03/frankenstein.txt.csv}{Die Häufigkeit (y-Achse) der 50 
 häufigsten Wörter in Frankenstein}{fig:frankensteinHaeufigkeiten} 
 \logPlotOf{aufg03/frankenstein.txt.csv}{Die Häufigkeit (y-Achse) der 50 
